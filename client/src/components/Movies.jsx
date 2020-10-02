@@ -17,10 +17,12 @@ useEffect(() => {
 function displayMovie(){
   return movies.map((eachMovie) => {
     return (
-      <div>
+      <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap'}}>
+      <div >
          <img src={eachMovie.image} alt="movie poster" />
          <h4>{eachMovie.title}</h4>
          <Link to={`/movies/${eachMovie._id}`}>See More</Link>
+      </div>
       </div>
     )
   })
