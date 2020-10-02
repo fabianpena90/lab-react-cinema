@@ -3,22 +3,23 @@ import axios from 'axios';
 
 function AddMovie(props) {
 
-const [addMovie, setAddMovie] = useState([])
-
-function handleChange(e){
-  setAddMovie(e.target.value)
-}
+const [title, setTitle] = useState('')
+const [director, setDirector] = useState('')
+const [image, setImage] = useState('')
 
 async function handleSubmit(e) {
-    await axios.post(`http://localhost:5000/addMovie`, addMovie);
-    // console.log(res.data)
+  console.log(title, director)
+  e.preventDefault();
+    let res = await axios.post(`http://localhost:5000/addMovie`, {title, director, image})
+      console.log(res)
 }
 
   return (
     <div style={{ padding: '80px'}}>
-      <form onSubmit={handleSubmit} method="post">
-        <input onChange={handleChange} type="text" name="title"/>
-        <input onChange={handleChange} type="text" name="director"/>
+      <form onSubmit={handleSubmit}>
+        <input onChange={(e) => setTitle (e.target.value)} type="text" name="title"/>
+        <input onChange={(e) => setDirector (e.target.value)} type="text" name="director"/>
+        <input onChange={(e) => setImage (e.target.value)} type="text" name="image"/>
         <button>Add New Movie</button>
       </form>
     </div>
